@@ -1,0 +1,12 @@
+# Linting and Code Quality
+pylint-django==2.5.3  # Linting for Django projects
+flake8==6.1.0         # Code style enforcement
+
+# Debugging
+django-debug-toolbar==3.8.1  # Debugging tool for development
+
+# Testing
+pytest-django==4.5.2  # Testing framework for Django
+pytest==7.4.0         # General testing framework
+factory-boy==3.3.1  
+
