@@ -33,14 +33,15 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
     
-class User():
+class User(AbstractBaseUser, PermissionsMixin):
     '''Custom user in the system.'''
     username = models.CharField(max_length=200, unique=True)
-    email = models.EmailField(max_length=255)
+    email = models.EmailField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
     bio = models.TextField(blank=True)
-    profile_image = models.ImageField(upload_to='profiles/', blank=True, null=True)
+    #profile_image = models.ImageField(upload_to='profiles/', blank=True, null=True)
     
     objects = UserManager()
     
