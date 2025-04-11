@@ -5,6 +5,9 @@
 __pycache__/
 *.env
 
+# C extensions
+*.so
+
 # Django
 db.sqlite3
 /media/
@@ -37,9 +40,16 @@ parts/
 sdist/
 var/
 wheels/
+pip-wheel-metadata/
+share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+MANIFEST
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
 
 # PyInstaller
 *.manifest
@@ -57,6 +67,7 @@ coverage.xml
 *.cover
 *.py,cover
 .hypothesis/
+.pytest_cache/
 
 # Jupyter Notebook
 .ipynb_checkpoints
@@ -75,3 +86,68 @@ __pycache__/
 *.pyd
 *.pyo
 *.pyd
+
+	 
+# Translations
+*.mo
+*.pot
+ 
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+ 
+# Flask stuff:
+instance/
+.webassets-cache
+ 
+# Scrapy stuff:
+.scrapy
+ 
+# Sphinx documentation
+docs/_build/
+ 
+# PyBuilder
+target/
+
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow
+__pypackages__/
+ 
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+.python-version
+ipython_config.py
+profile_default/
+.ipynb_checkpoints
+ 
+# SageMath parsed files
+*.sage.py
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+ 
+# Spyder project settings
+.spyderproject
+.spyproject
+ 
+# Rope project settings
+.ropeproject
+ 
+# mkdocs documentation
+/site
+ 
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+ 
+# Pyre type checker
+.pyre/
