@@ -34,7 +34,7 @@ class PublicUserApiTests(TestCase):
         }
         res = self.client.post(CREATE_USER_URL, payload)
         self.assertEqual(res.status_code, status.HTTP_201_CREATED)
-        user = get_user_model().objects.get(payload['email'])
+        user = get_user_model().objects.get(email=payload['email'])
         self.assertTrue(user.check_password(payload['password']))
         self.assertNotIn('password', res.data)
 
@@ -71,8 +71,8 @@ class PublicUserApiTests(TestCase):
             'password': 'testpassword123'
         }
         payload = {
-            'email': user_details['email'],
-            'password': user_details['password']
+            'username': user_details['email'],
+            'password': user_details['password'],
         }
         create_user(**user_details)
         res = self.client.post(TOKEN_URL, payload)
@@ -81,7 +81,9 @@ class PublicUserApiTests(TestCase):
 
     def test_login_and_token_check_for_invalid_credentials(self):
         """ Test invalid credentials """
-        create_user(email='test@example.com', password='test123')
+        create_user(username='testuser',
+                    email='test@example.com',
+                    password='test123')
         payload = {
             'email': 'test2@example.com',
             'password': 'test123',
@@ -130,9 +132,9 @@ class PrivateUserApiTests(TestCase):
 
     def test_update_user_profile(self):
         """ Test updating the user profile for authenticated user """
-        payload = {'name': 'newuser name', 'password': 'newpassword123'}
+        payload = {'username': 'newusername', 'password': 'newpassword123'}
         res = self.client.patch(PROFILE_URL, payload)
         self.user.refresh_from_db()
-        self.assertEqual(self.user.name, payload['name'])
+        self.assertEqual(self.user.username, payload['username'])
         self.assertTrue(self.user.check_password(payload['password']))
         self.assertEqual(res.status_code, status.HTTP_200_OK)

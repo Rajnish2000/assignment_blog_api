@@ -3,6 +3,7 @@
 """
 from django.test import TestCase
 from django.contrib.auth import get_user_model
+from core import models
 
 
 class ModelTests(TestCase):
@@ -51,3 +52,17 @@ class ModelTests(TestCase):
         )
         self.assertTrue(user.is_superuser)
         self.assertTrue(user.is_staff)
+
+    def test_create_blog_model(self):
+        """Test for creating a blog post model is successful."""
+        user = get_user_model().objects.create_user(
+            'testuser',
+            'test@example.com',
+            'test123'
+        )
+        blog_post = models.BlogPost.objects.create(
+            title='Test Blog Post',
+            content='This is a test blog post.',
+            author=user
+        )
+        self.assertEqual(str(blog_post), blog_post.title)
